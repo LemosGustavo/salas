@@ -9,7 +9,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="#">Inicio</a></li>
+              <li class="breadcrumb-item active"><a href="<?= base_url()?>">Inicio</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,7 +33,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">Ver Más <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url()?>" class="small-box-footer">Ver Más <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -47,7 +47,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">Ver Más<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url()?>" class="small-box-footer">Ver Más<i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

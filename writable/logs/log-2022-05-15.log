@@ -1,0 +1,17 @@
+ERROR - 2022-05-15 19:13:07 --> Array
+(
+    [label] => Nombre
+    [type] => text
+    [id_name] => nombre
+    [maxlength] => 50
+    [name] => nombre
+)
+
+CRITICAL - 2022-05-15 19:13:07 --> Call to undefined function App\Controllers\set_value()
+#0 C:\wamp64\www\salas\app\Controllers\MYController.php(351): App\Controllers\MYController->add_input_field(Array, Array, NULL)
+#1 C:\wamp64\www\salas\app\Controllers\Salas.php(30): App\Controllers\MYController->build_fields(Array)
+#2 C:\wamp64\www\salas\system\CodeIgniter.php(832): App\Controllers\Salas->crearSalasModal()
+#3 C:\wamp64\www\salas\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Salas))
+#4 C:\wamp64\www\salas\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\wamp64\www\salas\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
