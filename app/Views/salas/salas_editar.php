@@ -10,7 +10,11 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url() ?>">Inicio</a></li>
-                        <li class="breadcrumb-item active">Crear Salas</li>
+                        <?php if ($textBtn == 'Eliminar') : ?>
+                            <li class="breadcrumb-item active">Eliminar Sala</li>
+                        <?php else : ?>
+                            <li class="breadcrumb-item active">Editar Sala</li>
+                        <?php endif; ?>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -25,7 +29,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Agregar Salas</h4>
+                            <?php if ($textBtn == 'Eliminar') : ?>
+                                <h4>Eliminar Sala</h4>
+                            <?php else : ?>
+                                <h4>Editar Sala</h4>
+                            <?php endif; ?>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -33,14 +41,15 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <?php ?>
                                             <label for="nombre_label">Nombre</label>
-                                            <input type="text" class="form-control" name="nombre" placeholder="Ingresar Nombre">
+                                            <input type="text" class="form-control" name="nombre" value="<?= old('nombre', $lista_sala['nombre_sala']) ?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="ubicacion_label">Ubicación</label>
-                                            <input type="text" class="form-control" name="ubicacion" placeholder="Ingresar Ubicación">
+                                            <input type="text" class="form-control" name="ubicacion" value="<?= old('nombre', $lista_sala['ubicacion']) ?>" placeholder="Ingresar Ubicación">
                                         </div>
                                     </div>
                                 </div>
@@ -48,23 +57,30 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="descripcion_label">Descripción</label>
-                                            <input type="text" class="form-control" name="descripcion" placeholder="Ingresar Descripción">
+                                            <input type="text" class="form-control" name="descripcion" value="<?= old('nombre', $lista_sala['descripcion']) ?>" placeholder="Ingresar Descripción">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="estado_label">Estado</label>
                                             <select class="form-control select2" name="estado" style="width: 100%;">
-                                                <option value="">Seleccionar Estado</option>
-                                                <option value="1">Habilitar</option>
-                                                <option value="0">Deshabilitar</option>
+                                                <option value="<?= old('nombre', $lista_sala['estado_sala']) ?>"><?= (old('nombre', $lista_sala['estado_sala'])) ? "Habilitar" : "Deshabilitar" ?></option>
+                                                <?php if ($lista_sala['estado_sala'] == 1) : ?>
+                                                    <option value="0">Deshabilitar</option>
+                                                <?php else : ?>
+                                                    <option value="1">Habilitar</option>
+                                                <?php endif; ?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row justify-content-between">
                                     <a type="button" class="btn btn-default" href="<?= base_url() ?>/salas/listSalas">Volver</a>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <?php if ($textBtn == 'Eliminar') : ?>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <?php else : ?>
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                    <?php endif; ?>
                                 </div>
                                 <!-- /.card-body -->
                             </form>
