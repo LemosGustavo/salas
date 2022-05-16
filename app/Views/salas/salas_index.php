@@ -25,7 +25,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                        <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" id="agregar_sala" name="agregar_sala" href="<?= base_url()?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
+                        <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" href="<?= base_url()?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
+                        <a href="<?= base_url()?>/salas/crearSalas" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">

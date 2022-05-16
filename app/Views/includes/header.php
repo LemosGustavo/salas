@@ -15,12 +15,9 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/jqvmap/jqvmap.min.css">
+   
     <!-- jQuery -->
     <script src="<?= base_url() ?>/assets/plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="<?= base_url() ?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
@@ -45,15 +42,6 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="<?= base_url() ?>" class="nav-link">Inicio</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
                 </li>
             </ul>
         </nav>
