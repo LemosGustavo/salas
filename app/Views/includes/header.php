@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-   
+
     <!-- jQuery -->
     <script src="<?= base_url() ?>/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-   <!--  <script src="<?= base_url() ?>/assets/plugins/inputmask/jquery.inputmask.bundle.js" type="text/javascript"></script>-->
+    <!--  <script src="<?= base_url() ?>/assets/plugins/inputmask/jquery.inputmask.bundle.js" type="text/javascript"></script>-->
     <!-- <script src="<?= base_url() ?>/assets/plugins/inputmask/inputmask.js" type="text/javascript"></script> -->
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/plugins/daterangepicker/daterangepicker.css">
@@ -96,22 +96,7 @@
                                         <p>Reservas</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Calendario</p>
-                                    </a>
-                                </li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>/assets/pages/calendar.html" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    Calendar
-                                    <span class="badge badge-info right">2</span>
-                                </p>
-                            </a>
                         </li>
                     </ul>
                 </nav>

@@ -32,17 +32,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <!--     <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" href="<?php // base_url() 
-                                                                                                                        ?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>-->
                             <a href="<?= base_url() ?>/salas/crearSalas" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -91,20 +81,3 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<div class="modal fade" id="remote_modal_lg" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        </div>
-    </div>
-</div>
-<script>
-    $(document).ready(function() {
-        $("#remote_modal_lg").on("show.bs.modal", function(e) {
-            var link = $(e.relatedTarget);
-            $(this).find(".modal-content").load(link.attr("href"));
-        });
-        $('#remote_modal_lg').on("hidden.bs.modal", function(e) {
-            $(this).find(".modal-content").empty();
-        });
-    });
-</script>
