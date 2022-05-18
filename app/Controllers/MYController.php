@@ -361,15 +361,11 @@ class MYController extends BaseController {
     }
 
     protected function get_date_sql($post = 'fecha', $src_format = 'd/m/Y', $dst_format = 'Y-m-d') {
-        if ($this->input->post($post)) {
-            $fecha = DateTime::createFromFormat($src_format, $this->input->post($post));
-            if (!empty($fecha)) {
-                $fecha_sql = date_format($fecha, $dst_format);
-            } else {
-                return 'NULL';
-            }
+        $fecha = DateTime::createFromFormat($src_format, $post);
+        if (!empty($fecha)) {
+            $fecha_sql = date_format($fecha, $dst_format);
         } else {
-            $fecha_sql = 'NULL';
+            return 'NULL';
         }
         return $fecha_sql;
     }

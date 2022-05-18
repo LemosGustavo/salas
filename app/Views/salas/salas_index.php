@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" href="<?= base_url() ?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
+                       <!--     <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" href="<?php // base_url() ?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>-->
                             <a href="<?= base_url() ?>/salas/crearSalas" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -56,7 +56,7 @@
                                             <td><?= $salas['ubicacion'] ?></td>
                                             <td><?= $salas['descripcion'] ?></td>
                                             <td><?= ($salas['estado_sala'] == 1) ? '<i class="fa fa-check text-green">Habilitado</i>' : '<i class="fa fa-times text-red">Deshabilitado</i>'; ?></td>
-                                            <td><?= $salas['fecha_creacion'] ?></td>
+                                            <td><?= date_format(DateTime::createFromFormat('Y-m-d H:i:s',  $salas['fecha_creacion']),'d/m/Y H:i:s') ?></td>
                                             <td><a href="<?= base_url() ?>/salas/editarSalas/<?= $salas['id']?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                             <a href="<?= base_url() ?>/salas/eliminarSalas/<?= $salas['id']?>" class="btn btn-danger"><i class="fas fa-eraser"></i></a></td>
                                         </tr>
@@ -65,6 +65,13 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        <!-- card-footer -->
+                        <div class="card-footer">
+                            <div class="row justify-content-between">
+                                <a type="button" class="btn btn-default" href="<?= base_url() ?>">Volver</a>
+                            </div>
+                        </div>
+                        <!-- /.card-footer -->
                     </div>
                     <!-- /.card -->
                 </div>
