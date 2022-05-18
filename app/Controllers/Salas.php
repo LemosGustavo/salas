@@ -2,29 +2,25 @@
 
 namespace App\Controllers;
 
-use stdClass;
 use App\Models\SalasModel;
 use App\Models\ReservaModel;
-use DateTime;
 
 class Salas extends MYController {
     public function index() {
         $salasModel = new SalasModel();
         $reservaModel = new ReservaModel();
-        
+
         $data['contadorSalas'] = $salasModel->where("id")->countAll();
         $data['contadorReservas'] = $reservaModel->where("id")->countAll();
-lm($data);
-
-        $this->loadViews("salas/index",$data);
+        $this->loadViews("salas/index", $data);
     }
 
     public function listSalas() {
         $salasModel = new SalasModel();
-        $data['lista_salas']= $salasModel->findAll();
+        $data['lista_salas'] = $salasModel->findAll();
 
 
-        $this->loadViews("salas/salas_index",$data);
+        $this->loadViews("salas/salas_index", $data);
     }
 
     public function crearSalas() {
@@ -35,7 +31,8 @@ lm($data);
         helper(array("url", "form"));
         $validation = \Config\Services::validation();
         $transOk = TRUE;
-        $data= array();
+        $errors = '';
+        $data = array();
 
         $validation->setRules(
             array(
@@ -62,11 +59,9 @@ lm($data);
         );
 
         if ($_POST) {
-            lm($_POST);
             if (!$validation->withRequest($this->request)->run()) {
-                $errors = $validation->getErrors();
+                $errors = flashData($validation->getErrors());
                 $data['error'] = true;
-                lm($errors);
                 $transOk = false;
             } else {
                 $array_salas = array(
@@ -80,24 +75,25 @@ lm($data);
             }
             if ($dbs->transStatus() && $transOk) {
                 $dbs->transCommit();
-                return redirect()->to(base_url().'/salas/listSalas');
+                return redirect()->to(base_url() . '/salas/listsalas')->with('message', 'Sala creada correctamente');
             } else {
                 $dbs->transRollback();
-                return redirect()->to(base_url().'/salas/crearSalas');
+                return redirect()->to(base_url() . '/salas/crearSalas')->with('error', $errors);
             }
         }
 
-        $this->loadViews("salas/salas_crear",$data);
+        $this->loadViews("salas/salas_crear", $data);
     }
 
     public function editarSalas($salaId) {
-        
+
         $dbs = \Config\Database::connect();
         $dbs->transBegin();
         $salasModel = new SalasModel();
-        $datosSala = $salasModel->where("id",$salaId)->findAll();
+        $datosSala = $salasModel->where("id", $salaId)->findAll();
         $data['lista_sala'] = $datosSala[0];
         $transOk = TRUE;
+        $errors = '';
 
         helper(array("url", "form"));
         $validation = \Config\Services::validation();
@@ -128,9 +124,8 @@ lm($data);
 
         if ($_POST) {
             if (!$validation->withRequest($this->request)->run()) {
-                $errors = $validation->getErrors();
+                $errors = flashData($validation->getErrors());
                 $data['error'] = true;
-                lm($errors);
                 $transOk &= false;
             } else {
                 $array_salas = array(
@@ -140,28 +135,29 @@ lm($data);
                     "estado_sala" => $_POST['estado'],
                     "fecha_actualizacion" => date('Y-m-d H:i:s'),
                 );
-                $transOk &= $salasModel->update($salaId,$array_salas);
+                $transOk &= $salasModel->update($salaId, $array_salas);
             }
             if ($dbs->transStatus() && $transOk) {
                 $dbs->transCommit();
-                return redirect()->to(base_url().'/salas/listsalas');
+                return redirect()->to(base_url() . '/salas/listsalas')->with('message', 'Sala editada correctamente');
             } else {
                 $dbs->transRollback();
-                return redirect()->to(base_url().'/salas/editarSalas');
+                return redirect()->to(base_url() . '/salas/editarSalas/' . $salaId)->with('error', $errors);
             }
         }
-        
-        $this->loadViews("salas/salas_editar",$data);
+
+        $this->loadViews("salas/salas_editar", $data);
     }
-    
+
     public function eliminarSalas($salaId) {
-        
+
         $dbs = \Config\Database::connect();
         $dbs->transBegin();
         $salasModel = new SalasModel();
-        $datosSala = $salasModel->where("id",$salaId)->findAll();
+        $datosSala = $salasModel->where("id", $salaId)->findAll();
         $data['lista_sala'] = $datosSala[0];
         $transOk = TRUE;
+        $errors = '';
 
         helper(array("url", "form"));
         $validation = \Config\Services::validation();
@@ -192,23 +188,22 @@ lm($data);
 
         if ($_POST) {
             if (!$validation->withRequest($this->request)->run()) {
-                $errors = $validation->getErrors();
+                $errors = flashData($validation->getErrors());
                 $data['error'] = true;
-                lm($errors);
                 $transOk &= false;
             } else {
                 $transOk &= $salasModel->delete($salaId);
             }
             if ($dbs->transStatus() && $transOk) {
                 $dbs->transCommit();
-                return redirect()->to(base_url().'/salas/listsalas');
+                return redirect()->to(base_url() . '/salas/listsalas')->with('message', 'Sala eliminada correctamente');
             } else {
                 $dbs->transRollback();
-                return redirect()->to(base_url().'/salas/editarSalas');
+                return redirect()->to(base_url() . '/salas/editarSalas/' . $salaId)->with('error', $errors);
             }
         }
-        $data['textBtn']="Eliminar";
-        $this->loadViews("salas/salas_editar",$data);
+        $data['textBtn'] = "Eliminar";
+        $this->loadViews("salas/salas_editar", $data);
     }
 
     public function crearSalasModal() {

@@ -28,7 +28,8 @@ class Reservas extends MYController {
         $this->dbs->transBegin();
         $data = array();
         $transOk = TRUE;
-        $data['selectSalas'] = $this->SalasModel->where("estado_sala",1)->findAll();
+        $errors = '';
+        $data['selectSalas'] = $this->SalasModel->where("estado_sala", 1)->findAll();
 
         helper(array("url", "form"));
         $validation = \Config\Services::validation();
@@ -45,7 +46,7 @@ class Reservas extends MYController {
                     "Required" => "Debe seleccionar una sala"
                 ),
                 "persona_reserva" => array(
-                    "Required" => "La ubicacion es requerida, por favor revisela"
+                    "Required" => "La reserva de una persona es requerida, por favor revisela"
                 ),
                 "fechadesdedatetime" => array(
                     "Required" => "La fecha desde es requerida, por favor revisela"
@@ -57,11 +58,9 @@ class Reservas extends MYController {
         );
 
         if ($_POST) {
-            lm($_POST);
             if (!$validation->withRequest($this->request)->run()) {
-                $errors = $validation->getErrors();
+                $errors = flashData($validation->getErrors());
                 $data['error'] = true;
-                lm($errors);
                 $transOk = false;
             } else {
                 $fechaInicio = $this->get_datetime_sql($_POST['fechadesdedatetime']);
@@ -79,10 +78,10 @@ class Reservas extends MYController {
             }
             if ($this->dbs->transStatus() && $transOk) {
                 $this->dbs->transCommit();
-                return redirect()->to(base_url() . '/reservas/listReservas');
+                return redirect()->to(base_url() . '/reservas/listReservas')->with('message', 'Sala creada correctamente');
             } else {
                 $this->dbs->transRollback();
-                return redirect()->to(base_url() . '/reservas/crearReservas');
+                return redirect()->to(base_url() . '/reservas/crearReservas')->with('error', $errors);
             }
         }
 
@@ -93,9 +92,10 @@ class Reservas extends MYController {
         $this->dbs->transBegin();
 
         $datosReserva = $this->ReservaModel->where("id", $reservaId)->findAll();
-        $data['selectSalas'] = $this->SalasModel->where("estado_sala",1)->findAll();
+        $data['selectSalas'] = $this->SalasModel->where("estado_sala", 1)->findAll();
         $data['lista_reserva'] = $datosReserva[0];
         $transOk = TRUE;
+        $errors = '';
 
         helper(array("url", "form"));
         $validation = \Config\Services::validation();
@@ -112,7 +112,7 @@ class Reservas extends MYController {
                     "Required" => "Debe seleccionar una sala"
                 ),
                 "persona_reserva" => array(
-                    "Required" => "La ubicacion es requerida, por favor revisela"
+                    "Required" => "La reserva de una persona es requerida, por favor revisela"
                 ),
                 "fechadesdedatetime" => array(
                     "Required" => "La fecha desde es requerida, por favor revisela"
@@ -125,9 +125,8 @@ class Reservas extends MYController {
 
         if ($_POST) {
             if (!$validation->withRequest($this->request)->run()) {
-                $errors = $validation->getErrors();
+                $errors = flashData($validation->getErrors());
                 $data['error'] = true;
-                lm($errors);
                 $transOk &= false;
             } else {
                 $fechaInicio = $this->get_datetime_sql($_POST['fechadesdedatetime']);
@@ -145,10 +144,10 @@ class Reservas extends MYController {
 
             if ($this->dbs->transStatus() && $transOk) {
                 $this->dbs->transCommit();
-                return redirect()->to(base_url() . '/reservas/listReservas');
+                return redirect()->to(base_url() . '/reservas/listReservas')->with('message', 'Sala creada correctamente');
             } else {
                 $this->dbs->transRollback();
-                return redirect()->to(base_url() . '/reservas/editarReservas');
+                return redirect()->to(base_url() . '/reservas/editarReservas/' . $reservaId)->with('error', $errors);
             }
         }
 
@@ -160,9 +159,10 @@ class Reservas extends MYController {
         $this->dbs->transBegin();
 
         $datosReserva = $this->ReservaModel->where("id", $reservaId)->findAll();
-        $data['selectSalas'] = $this->SalasModel->where("estado_sala",1)->findAll();
+        $data['selectSalas'] = $this->SalasModel->where("estado_sala", 1)->findAll();
         $data['lista_reserva'] = $datosReserva[0];
         $transOk = TRUE;
+        $errors = '';
 
         helper(array("url", "form"));
         $validation = \Config\Services::validation();
@@ -179,7 +179,7 @@ class Reservas extends MYController {
                     "Required" => "Debe seleccionar una sala"
                 ),
                 "persona_reserva" => array(
-                    "Required" => "La ubicacion es requerida, por favor revisela"
+                    "Required" => "La reserva de una persona es requerida, por favor revisela"
                 ),
                 "fechadesdedatetime" => array(
                     "Required" => "La fecha desde es requerida, por favor revisela"
@@ -192,20 +192,19 @@ class Reservas extends MYController {
 
         if ($_POST) {
             if (!$validation->withRequest($this->request)->run()) {
-                $errors = $validation->getErrors();
+                $errors = flashData($validation->getErrors());
                 $data['error'] = true;
-                lm($errors);
                 $transOk &= false;
             } else {
                 $transOk &= $this->ReservaModel->delete($reservaId);
             }
             if ($this->dbs->transStatus() && $transOk) {
                 $this->dbs->transCommit();
-                return redirect()->to(base_url() . '/reservas/listReservas');
+                return redirect()->to(base_url() . '/reservas/listReservas')->with('message', 'Sala creada correctamente');
             } else {
                 $this->dbs->transRollback();
-                return redirect()->to(base_url() . '/reservas/eliminarReservas');
-            }
+                return redirect()->to(base_url() . '/reservas/eliminarReservas/' . $reservaId)->with('error', $errors);
+            }           
         }
 
         $data['textBtn'] = "Eliminar";

@@ -346,7 +346,6 @@ class MYController extends BaseController {
                 unset($field['required']);
             }
             $field['name'] = $name;
-            lm($field);
             if (empty($field['input_type'])) {
                 $this->add_input_field($fields, $field, isset($registro) ? $registro->{$name} : NULL);
             } elseif ($field['input_type'] == 'combo') {

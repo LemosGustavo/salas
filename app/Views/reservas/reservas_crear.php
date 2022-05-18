@@ -2,6 +2,13 @@
  <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <div class="content-header">
+         <?php if (session('error')) : ?>
+             <div class="alert alert-warning alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                 <p><?= session('error') ?></p>
+             </div>
+         <?php endif; ?>
          <div class="container-fluid">
              <div class="row mb-2">
                  <div class="col-sm-6">
@@ -36,9 +43,9 @@
                                              <label for="estado_label">Salas</label>
                                              <select class="form-control select2" name="salas" style="width: 100%;">
                                                  <option value="">Seleccionar Salas</option>
-                                                 <?php foreach ($selectSalas as $salas):?>
-                                                 <option value="<?= $salas['id'] ?>"><?= $salas['nombre_sala'] ?> </option>
-                                                 <?php endforeach;?>
+                                                 <?php foreach ($selectSalas as $salas) : ?>
+                                                     <option value="<?= $salas['id'] ?>"><?= $salas['nombre_sala'] ?> </option>
+                                                 <?php endforeach; ?>
                                              </select>
                                          </div>
                                      </div>
@@ -74,29 +81,29 @@
                                      </div>
                                  </div>
                                  <div class="row">
-                                 <div class="col-sm-12">
+                                     <div class="col-sm-12">
                                          <div class="form-group">
                                              <label for="observaciones_label">Observaciones </label>
                                              <textarea class="form-control" rows="3" name="observaciones" placeholder="Observaciones..."></textarea>
                                          </div>
                                      </div>
                                  </div>
-                         <div class="row justify-content-between">
-                             <a type="button" class="btn btn-default" href="<?= base_url() ?>/reservas/listReservas">Volver</a>
-                             <button type="submit" class="btn btn-primary">Guardar</button>
+                                 <div class="row justify-content-between">
+                                     <a type="button" class="btn btn-default" href="<?= base_url() ?>/reservas/listReservas">Volver</a>
+                                     <button type="submit" class="btn btn-primary">Guardar</button>
+                                 </div>
+                                 <!-- /.card-body -->
+                             </form>
                          </div>
                          <!-- /.card-body -->
-                         </form>
                      </div>
-                     <!-- /.card-body -->
+                     <!-- /.card -->
                  </div>
-                 <!-- /.card -->
              </div>
-         </div>
-         <!-- /.row (main row) -->
- </div><!-- /.container-fluid -->
- </section>
- <!-- /.content -->
+             <!-- /.row (main row) -->
+         </div><!-- /.container-fluid -->
+     </section>
+     <!-- /.content -->
  </div>
  <!-- /.content-wrapper -->
  <script>

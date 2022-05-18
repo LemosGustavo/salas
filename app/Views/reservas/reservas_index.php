@@ -2,6 +2,13 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
+        <?php if (session('message')) : ?>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i> OK!</h5>
+                <?= session('message') ?>
+            </div>
+        <?php endif; ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">

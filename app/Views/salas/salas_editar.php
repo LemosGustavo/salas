@@ -2,6 +2,13 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
+        <?php if (session('error')) : ?>
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                <p><?= session('error') ?></p>
+            </div>
+        <?php endif; ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -27,11 +34,13 @@
             <!-- Main row -->
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <?php if ($textBtn == 'Eliminar') : ?>
+                    <?php if ($textBtn == 'Eliminar') : ?>
+                        <div class="card card-danger">
+                            <div class="card-header">
                                 <h4>Eliminar Sala</h4>
-                            <?php else : ?>
+                                <?php else : ?>
+                        <div class="card card-warning">
+                            <div class="card-header">
                                 <h4>Editar Sala</h4>
                             <?php endif; ?>
                         </div>

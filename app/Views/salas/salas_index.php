@@ -2,6 +2,13 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
+        <?php if (session('message')) : ?>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i> OK!</h5>
+                <?= session('message') ?>
+            </div>
+        <?php endif; ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -25,7 +32,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                       <!--     <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" href="<?php // base_url() ?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>-->
+                            <!--     <a data-remote="false" data-toggle="modal" data-target="#remote_modal_lg" href="<?php // base_url() 
+                                                                                                                        ?>/salas/crearSalasModal" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>-->
                             <a href="<?= base_url() ?>/salas/crearSalas" class="btn btn-success"><i class="fa fa-plus"></i> Agregar</a>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -50,17 +58,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($lista_salas as $salas) :?>
+                                    <?php foreach ($lista_salas as $salas) : ?>
                                         <tr>
                                             <td><?= $salas['nombre_sala'] ?></td>
                                             <td><?= $salas['ubicacion'] ?></td>
                                             <td><?= $salas['descripcion'] ?></td>
                                             <td><?= ($salas['estado_sala'] == 1) ? '<i class="fa fa-check text-green">Habilitado</i>' : '<i class="fa fa-times text-red">Deshabilitado</i>'; ?></td>
-                                            <td><?= date_format(DateTime::createFromFormat('Y-m-d H:i:s',  $salas['fecha_creacion']),'d/m/Y H:i:s') ?></td>
-                                            <td><a href="<?= base_url() ?>/salas/editarSalas/<?= $salas['id']?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <a href="<?= base_url() ?>/salas/eliminarSalas/<?= $salas['id']?>" class="btn btn-danger"><i class="fas fa-eraser"></i></a></td>
+                                            <td><?= date_format(DateTime::createFromFormat('Y-m-d H:i:s',  $salas['fecha_creacion']), 'd/m/Y H:i:s') ?></td>
+                                            <td><a href="<?= base_url() ?>/salas/editarSalas/<?= $salas['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                <a href="<?= base_url() ?>/salas/eliminarSalas/<?= $salas['id'] ?>" class="btn btn-danger"><i class="fas fa-eraser"></i></a>
+                                            </td>
                                         </tr>
-                                    <?php  endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

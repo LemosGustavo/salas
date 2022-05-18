@@ -7,3 +7,11 @@ function lm($val) {
 function lq($val) {
 	log_message('error', $val->db->getLastQuery());
 }
+
+function flashData($array) {
+	$string = '';
+	foreach ($array as $a) {
+		$string .= $a . "<br>";
+	}
+	return $string;
+}
