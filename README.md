@@ -1,7 +1,7 @@
 # Consideraciones de instalación y funcionamiento
 
 ## Instalación Wampserver Windows 10
-- Dirigirse a [![Instalación Wamp](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://www.wampserver.com/en/php-addons/)
+- Dirigirse a [![Instalación Wamp](https://img.shields.io/badge/downloads-Wampserver-green)](https://www.wampserver.com/en/php-addons/)
 - Instalar WampServer
 - Una vez instalado, dirigirse a la ruta "../wamp64/www" y clonar este repositorio (https://github.com/LemosGustavo/salas.git)
 - Se crea automáticamente la carpeta salas.
