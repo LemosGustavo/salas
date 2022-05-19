@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `reserva_sala` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sala_id` int(11) NOT NULL,
   `persona_reserva` varchar(80) NOT NULL,
-  `marcacion_calendario` text NOT NULL,
+  `observacion` varchar(150) NOT NULL,
   `fecha_inicio` datetime NOT NULL,
   `fecha_hasta` datetime NOT NULL,
   `estado` int(11) NOT NULL DEFAULT '0',
@@ -58,15 +58,3 @@ CREATE TABLE IF NOT EXISTS `sala` (
   `fecha_actualizacion` datetime DEFAULT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `sala`
---
-
-INSERT INTO `sala` (`id`, `nombre_sala`, `ubicacion`, `descripcion`, `estado_sala`, `fecha_creacion`, `fecha_actualizacion`) VALUES
-(1, 'Salón Azul', 'Arriba', 'Salón para personas mayores de 18 años', 1, '2022-05-15 23:57:46', NULL);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
