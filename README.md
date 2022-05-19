@@ -1,3 +1,31 @@
+# Consideraciones de instalación y funcionamiento
+
+## Instalación Wampserver Windows 10
+- Dirigirse a [![Instalación Wamp](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://www.wampserver.com/en/php-addons/)
+- Instalar WampServer
+- Una vez instalado, dirigirse a la ruta "../wamp64/www" y clonar este repositorio (https://github.com/LemosGustavo/salas.git)
+- Se crea automáticamente la carpeta salas.
+
+## Configuración Wampserver
+Una vez realizada la instalación, se va a configurar el entorno de localhost para que funcione el proyecto.
+- Verificar que el estado de la aplicación wampserver se encuentre en verde o en su defecto que esté en funcionamiento MySQL y Apache.
+- Click izquierdo sobre el icono verde de wampserver. Se despliega un menú en el que se va a seleccionar "Your VirtualHosts-> VirtualHost Management".
+- Una vez en "VirtualHost Management", en el primer campo colocamos "testing.salas.com.ar" y en el segundo, la ruta donde se clonó el repositorio, pero teniendo en cuenta lo siguiente "../wamp64/www/salas/public/". El tercer campo lo dejamos en blanco.
+- Click en "Start the creation of the VirtualHost(May take a while...)"
+- Se creó una ruta de host, donde está nuestro proyecto y lo podemos llamar por el navegador (http://testing.salas.com.ar/)
+- Ahora, click izquierdo sobre el icono de wampserver y seleccionar "Restart all services"
+- En el caso de que no se pueda acceder, crear un "alias" en apache.
+
+### [SI NO FUNCIONA EL PROYECTO CON LA RUTA ANTERIOR, REALIZAR ESTO]
+Se va a crear un alias del proyecto, donde se toma la ruta del mismo que está de manera local en nuestra máquina.
+- Nuevamente, click izquierdo sobre el ícono de wampserver, esta vez seleccionar "Apache-> Alias directories-> Add an alias".
+- Se abre un prompt. La primer opción que nos muestra colocamos el nombre del proyecto "salas". En la segunda opción colocar que nos pide la ruta, colocar donde se encuntra el proyecto "../wamp64/www/salas/public/"
+- Reiniciar todos los servicios nuevamente "Restart all services".
+- Listo!
+
+**Este Proyecto está desarrollado con CodeIgniter 4 y con la plantilla AdminLte 3. Utiliza por base de datos MySQL**
+
+# Readme CI4
 # CodeIgniter 4 Development
 
 [![Build Status](https://github.com/codeigniter4/CodeIgniter4/workflows/PHPUnit/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions?query=workflow%3A%22PHPUnit%22)
